@@ -430,3 +430,4 @@ C:\Users\bryso\workspace\csharp\DogGo\DogGo\obj\Debug\net5.0\Razor\Views\Owners\
 C:\Users\bryso\workspace\csharp\DogGo\DogGo\obj\Debug\net5.0\Razor\Views\Owners\Create.cshtml.g.cs
 C:\Users\bryso\workspace\csharp\DogGo\DogGo\obj\Debug\net5.0\Razor\Views\Owners\Delete.cshtml.g.cs
 C:\Users\bryso\workspace\csharp\DogGo\DogGo\obj\Debug\net5.0\Razor\Views\Owners\Edit.cshtml.g.cs
+C:\Users\bryso\workspace\csharp\DogGo\DogGo\obj\Debug\net5.0\Razor\Views\Dog\Dogs.cshtml.g.cs

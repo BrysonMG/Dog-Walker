@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DogGo.Interfaces
 {
-    interface IDogRepository
+    public interface IDogRepository
     {
         List<Dog> GetAllDogs();
         Dog GetDogById(int id);

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DogGo.Interfaces;
+using DogGo.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,10 +11,18 @@ namespace DogGo.Controllers
 {
     public class DogController : Controller
     {
+        private readonly IDogRepository _dogRepo;
+
+        public DogController(IDogRepository dogRepository)
+        {
+            _dogRepo = dogRepository;
+        }
+
         // GET: DogController
         public ActionResult Index()
         {
-            return View();
+            List<Dog> dogs = _dogRepo.GetAllDogs();
+            return View(dogs);
         }
 
         // GET: DogController/Details/5
@@ -30,36 +40,44 @@ namespace DogGo.Controllers
         // POST: DogController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Dog dog)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                _dogRepo.AddDog(dog);
+                return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return View(dog);
             }
         }
 
         // GET: DogController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Dog dog = _dogRepo.GetDogById(id);
+
+            if (dog == null)
+            {
+                return NotFound();
+            }
+            return View(dog);
         }
 
         // POST: DogController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Dog dog)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                _dogRepo.UpdateDog(dog);
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(dog);
             }
         }
 
